@@ -1,0 +1,6 @@
+#ifndef ARRAYS_SUBTRACTOPERATION_H
+#define ARRAYS_SUBTRACTOPERATION_H
+
+int subtract();
+
+#endif

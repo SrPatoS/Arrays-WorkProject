@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.27)
-project(untitled C)
+project(arrays C)
 
 set(CMAKE_C_STANDARD 11)
 
 include_directories(src/operations)
 
-add_executable(untitled main.c
+add_executable(arrays main.c
         src/operations/addOperation/addOperation.h
-        src/operations/addOperation/addOperation.c)
+        src/operations/addOperation/addOperation.c
+        src/operations/subtractOperation/subtractOperation.h
+        src/operations/subtractOperation/subtractOperation.c
+        src/makeArray.h
+        src/makeArray.c)
