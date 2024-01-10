@@ -1,0 +1,4 @@
+1 = Solicita o tipo de Matriz
+2 = Solicita a dimensão da Matriz
+3 = Solicita a dimensão da Matriz 2
+4 = Solicita a operação entre Matriz 1 e 2 (11 operações)
