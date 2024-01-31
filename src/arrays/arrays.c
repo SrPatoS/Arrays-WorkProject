@@ -82,3 +82,31 @@ float **nullArray() {
 
     return array;
 }
+
+float **squareArray() {
+    int lines = 0;
+    int columns = 0;
+
+    printf("=== Matriz Quadrada ===\n");
+    printf("Digite o Tamanho: ");
+    scanf("%d", &lines);
+
+    columns = lines;
+
+    float **array = (float **) malloc(lines * sizeof(float *));
+
+    for (int i = 0; i < lines; i++) {
+        array[i] = (float *) malloc(columns * sizeof(float));
+    }
+
+    for (int i = 0; i < lines; i++) {
+        for (int c = 0; c < columns; c++) {
+            printf("Escolha o valor para o item: (linha, coluna) [%d, %d]\n", i + 1, c + 1);
+            scanf("%f", &array[i][c]);
+        }
+    }
+
+    printArray(array, lines, columns);
+
+    return array;
+}

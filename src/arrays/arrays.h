@@ -5,26 +5,26 @@
 #ifndef ARRAYS_ARRAYS_H
 #define ARRAYS_ARRAYS_H
 
-float** lineArray();
+float **lineArray();
 
-float** columnArray();
+float **columnArray();
 
-float** nullArray();
+float **nullArray();
 
-float** squareArray();
+float **squareArray();
 
-float** diagonalArray();
+float **diagonalArray();
 
-float** identityArray();
+float **identityArray();
 
-float** transposedArray();
+float **transposedArray();
 
-float** symmetricalArray();
+float **symmetricalArray();
 
-float** oppositeArray();
+float **oppositeArray();
 
-float** upperTriangularArray();
+float **upperTriangularArray();
 
-float** lowerTriangular();
+float **lowerTriangular();
 
 #endif //ARRAYS_ARRAYS_H

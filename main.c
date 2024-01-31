@@ -30,6 +30,9 @@ int main() {
         case 3:
             nullArray();
             break;
+        case 4:
+            squareArray();
+            break;
     }
 
 
