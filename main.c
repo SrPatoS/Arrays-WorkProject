@@ -41,6 +41,8 @@ int main() {
             transposedArray();
         case 8:
             symmetricalArray();
+        case 9:
+            oppositeArray();
     }
 
 

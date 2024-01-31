@@ -240,3 +240,44 @@ float **symmetricalArray() {
 
     return array;
 }
+
+float **oppositeArray() {
+    int lines = 0;
+    int columns = 0;
+
+    printf("=== Matriz Transposta ===\n");
+    printf("Digite a Quantidade de linhas: ");
+    scanf("%d", &lines);
+
+    printf("Digite a Quantidade de colunas: ");
+    scanf("%d", &columns);
+
+    float **array = (float **) malloc(lines * sizeof(float *));
+
+    for (int i = 0; i < lines; i++) {
+        array[i] = (float *) malloc(columns * sizeof(float));
+    }
+
+    for (int i = 0; i < lines; i++) {
+        for (int c = 0; c < columns; c++) {
+            printf("Escolha o valor para o item: (linha, coluna) [%d, %d]\n", i + 1, c + 1);
+            scanf("%f", &array[i][c]);
+        }
+    }
+
+    float **oppositeArray = (float **) malloc(lines * sizeof(float *));
+    for (int i = 0; i < lines; i++) {
+        oppositeArray[i] = (float *) malloc(columns * sizeof(float));
+        for (int c = 0; c < columns; c++) {
+            oppositeArray[i][c] = -array[i][c];
+        }
+    }
+
+    printf("\nMatriz Original:\n");
+    printArray(array, lines, columns);
+
+    printf("\nMatriz Oposta:\n");
+    printArray(oppositeArray, lines, columns);
+
+    return oppositeArray;
+}
