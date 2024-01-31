@@ -37,6 +37,8 @@ int main() {
             diagonalArray();
         case 6:
             identityArray();
+        case 7:
+            transposedArray();
     }
 
 
