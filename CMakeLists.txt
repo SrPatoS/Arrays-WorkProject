@@ -10,8 +10,6 @@ add_executable(arrays main.c
         src/operations/addOperation/addOperation.c
         src/operations/subtractOperation/subtractOperation.h
         src/operations/subtractOperation/subtractOperation.c
-        src/makeArray.h
-        src/makeArray.c
         src/arrays/arrays.h
         src/arrays/arrays.c
         src/printArray/printArray.h
