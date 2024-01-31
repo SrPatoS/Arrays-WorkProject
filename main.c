@@ -14,67 +14,144 @@ int main() {
     printf(" 10 - Matriz Triangular Superior\n");
     printf(" 11 - Matriz Triangular Inferior\n");
 
-    printf("Selecione o Tipo de Matriz: ");
+    int arraysSelected = 0;
 
-    int choice;
+    float **arrayA;
+    float **arrayB;
 
-    scanf("%d", &choice);
+    while (arraysSelected < 2) {
+        printf("Selecione o Tipo de Matriz: ");
 
-    switch (choice) {
-        case 1:
-            lineArray();
-            break;
-        case 2:
-            columnArray();
-            break;
-        case 3:
-            nullArray();
-            break;
-        case 4:
-            squareArray();
-            break;
-        case 5:
-            diagonalArray();
-            break;
-        case 6:
-            identityArray();
-            break;
-        case 7:
-            transposedArray();
-            break;
-        case 8:
-            symmetricalArray();
-            break;
-        case 9:
-            oppositeArray();
-            break;
-        case 10:
-            upperTriangularArray();
-            break;
-        case 11:
-            lowerTriangular();
-            break;
-    }
+        int choice = 0;
 
+        scanf("%d", &choice);
 
-    /*float **lineTest = makeLineArray(3);
+        switch (choice) {
+            case 1:
+                choice = 0;
+                arraysSelected++;
+                float **selectedLineArray = lineArray();
 
-    printArray(lineTest, 1, 3);*/
+                if (arraysSelected == 0) {
+                    arrayA = selectedLineArray;
+                } else {
+                    arrayB = selectedLineArray;
+                }
+                break;
+            case 2:
+                choice = 0;
+                arraysSelected++;
+                float **selectedColumnArray = columnArray();
 
-    /*float** testArray = makeArray(2, 2);
+                if (arraysSelected == 0) {
+                    arrayA = selectedColumnArray;
+                } else {
+                    arrayB = selectedColumnArray;
+                }
+                break;
+            case 3:
+                choice = 0;
+                arraysSelected++;
+                float **selectedNullArray = nullArray();
 
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            printf("%.2f ", testArray[i][j]);
+                if (arraysSelected == 0) {
+                    arrayA = selectedNullArray;
+                } else {
+                    arrayB = selectedNullArray;
+                }
+                break;
+            case 4:
+                choice = 0;
+                arraysSelected++;
+                float **selectedSquareArray = squareArray();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedSquareArray;
+                } else {
+                    arrayB = selectedSquareArray;
+                }
+                break;
+            case 5:
+                choice = 0;
+                arraysSelected++;
+                float **selectedDiagonalArray = diagonalArray();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedDiagonalArray;
+                } else {
+                    arrayB = selectedDiagonalArray;
+                }
+                break;
+
+            case 6:
+                choice = 0;
+                arraysSelected++;
+                float **selectedIdentityArray = identityArray();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedIdentityArray;
+                } else {
+                    arrayB = selectedIdentityArray;
+                }
+                break;
+            case 7:
+                choice = 0;
+                arraysSelected++;
+                float **selectedTransposedArray = transposedArray();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedTransposedArray;
+                } else {
+                    arrayB = selectedTransposedArray;
+                }
+                break;
+            case 8:
+                choice = 0;
+                arraysSelected++;
+                float **selectedSymmetricalArray = symmetricalArray();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedSymmetricalArray;
+                } else {
+                    arrayB = selectedSymmetricalArray;
+                }
+                break;
+            case 9:
+                choice = 0;
+                arraysSelected++;
+                float **selectedOppositeArray = oppositeArray();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedOppositeArray;
+                } else {
+                    arrayB = selectedOppositeArray;
+                }
+                break;
+            case 10:
+                choice = 0;
+                arraysSelected++;
+                float **selectedUpperTriangularArray = upperTriangularArray();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedUpperTriangularArray;
+                } else {
+                    arrayB = selectedUpperTriangularArray;
+                }
+                break;
+            case 11:
+                choice = 0;
+                arraysSelected++;
+                float **selectedUpperLowerTriangular = lowerTriangular();
+
+                if (arraysSelected == 0) {
+                    arrayA = selectedUpperLowerTriangular;
+                } else {
+                    arrayB = selectedUpperLowerTriangular;
+                }
+                break;
         }
-        printf("\n");
     }
-
-    clearArray(testArray, 2);*/
-
-
 
     return 0;
 }
-
 
