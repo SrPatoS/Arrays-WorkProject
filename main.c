@@ -35,14 +35,25 @@ int main() {
             break;
         case 5:
             diagonalArray();
+            break;
         case 6:
             identityArray();
+            break;
         case 7:
             transposedArray();
+            break;
         case 8:
             symmetricalArray();
+            break;
         case 9:
             oppositeArray();
+            break;
+        case 10:
+            upperTriangularArray();
+            break;
+        case 11:
+            lowerTriangular();
+            break;
     }
 
 
