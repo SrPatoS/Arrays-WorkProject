@@ -27,6 +27,9 @@ int main() {
         case 2:
             columnArray();
             break;
+        case 3:
+            nullArray();
+            break;
     }
 
 

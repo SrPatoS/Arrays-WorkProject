@@ -54,3 +54,31 @@ float **columnArray() {
 
     return array;
 }
+
+float **nullArray() {
+    int lines = 0;
+    int columns = 0;
+
+    printf("=== Matriz Nula ===\n");
+    printf("Digite a Quantidade de Linhas: ");
+    scanf("%d", &lines);
+
+    printf("Digite a Quantidade de Colunas: ");
+    scanf("%d", &columns);
+
+    float **array = (float **) malloc(lines * sizeof(float *));
+
+    for (int i = 0; i < lines; i++) {
+        array[i] = (float *) malloc(columns * sizeof(float));
+    }
+
+    for (int i = 0; i < lines; i++) {
+        for (int c = 0; c < columns; c++) {
+            array[i][c] = 0;
+        }
+    }
+
+    printArray(array, lines, columns);
+
+    return array;
+}
