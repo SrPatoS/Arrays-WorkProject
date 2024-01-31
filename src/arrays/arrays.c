@@ -140,3 +140,34 @@ float **diagonalArray() {
 
     return array;
 }
+
+float **identityArray() {
+    int lines = 0;
+    int columns = 0;
+
+    printf("=== Matriz Identidade ===\n");
+    printf("Digite o Tamanho: ");
+    scanf("%d", &lines);
+
+    columns = lines;
+
+    float **array = (float **) malloc(lines * sizeof(float *));
+
+    for (int i = 0; i < lines; i++) {
+        array[i] = (float *) malloc(columns * sizeof(float));
+    }
+
+    for (int i = 0; i < lines; i++) {
+        for (int c = 0; c < columns; c++) {
+            if (i == c) {
+                array[i][c] = 1;
+            } else {
+                array[i][c] = 0;
+            }
+        }
+    }
+
+    printArray(array, lines, columns);
+
+    return array;
+}

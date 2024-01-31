@@ -35,6 +35,8 @@ int main() {
             break;
         case 5:
             diagonalArray();
+        case 6:
+            identityArray();
     }
 
 
