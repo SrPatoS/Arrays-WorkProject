@@ -7,24 +7,24 @@
 
 float** lineArray();
 
-void columnArray();
+float** columnArray();
 
-void nullArray();
+float** nullArray();
 
-void squareArray();
+float** squareArray();
 
-void diagonalArray();
+float** diagonalArray();
 
-void identityArray();
+float** identityArray();
 
-void transposedArray();
+float** transposedArray();
 
-void symmetricalArray();
+float** symmetricalArray();
 
-void oppositeArray();
+float** oppositeArray();
 
-void upperTriangularArray();
+float** upperTriangularArray();
 
-void lowerTriangular();
+float** lowerTriangular();
 
 #endif //ARRAYS_ARRAYS_H

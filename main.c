@@ -24,6 +24,9 @@ int main() {
         case 1:
             lineArray();
             break;
+        case 2:
+            columnArray();
+            break;
     }
 
 

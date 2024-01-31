@@ -28,3 +28,29 @@ float **lineArray() {
 
     return array;
 }
+
+float **columnArray() {
+    int lines = 0;
+    int columns = 1;
+
+    printf("=== Matriz Coluna ===\n");
+    printf("Digite a Quantidade de Linhas: ");
+    scanf("%d", &lines);
+
+    float **array = (float **) malloc(lines * sizeof(float *));
+
+    for (int i = 0; i < lines; i++) {
+        array[i] = (float *) malloc(columns * sizeof(float));
+    }
+
+    for (int i = 0; i < lines; i++) {
+        for (int c = 0; c < columns; c++) {
+            printf("Escolha o valor para o item: (linha, coluna) [%d, %d]\n", i + 1, c + 1);
+            scanf("%f", &array[i][c]);
+        }
+    }
+
+    printArray(array, lines, columns);
+
+    return array;
+}
