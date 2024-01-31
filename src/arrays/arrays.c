@@ -213,3 +213,30 @@ float **transposedArray() {
 
     return transposedArray;
 }
+
+float **symmetricalArray() {
+    int size;
+
+    printf("=== Matriz Simétrica ===\n");
+    printf("Digite o Tamanho: ");
+    scanf("%d", &size);
+
+    float **array = (float **) malloc(size * sizeof(float *));
+
+    for (int i = 0; i < size; i++) {
+        array[i] = (float *) malloc(size * sizeof(float));
+    }
+
+    for (int i = 0; i < size; i++) {
+        for (int j = i; j < size; j++) {
+            printf("Escolha o valor para o item: (linha, coluna) [%d, %d]\n", i + 1, j + 1);
+            scanf("%f", &array[i][j]);
+
+            array[j][i] = array[i][j];
+        }
+    }
+
+    printArray(array, size, size);
+
+    return array;
+}

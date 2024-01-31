@@ -39,6 +39,8 @@ int main() {
             identityArray();
         case 7:
             transposedArray();
+        case 8:
+            symmetricalArray();
     }
 
 
