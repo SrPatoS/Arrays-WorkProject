@@ -33,6 +33,8 @@ int main() {
         case 4:
             squareArray();
             break;
+        case 5:
+            diagonalArray();
     }
 
 
