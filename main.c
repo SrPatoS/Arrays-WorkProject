@@ -48,7 +48,7 @@ Matrix createLineMatrix() {
     return matrix;
 }
 
-Matrix createColumMatrix() {
+Matrix createColumnMatrix() {
     Matrix matrix;
     int lines = 0;
 
@@ -59,17 +59,19 @@ Matrix createColumMatrix() {
     matrix.lines = lines;
 
     matrix.data = (float **) malloc(matrix.lines * sizeof(float *));
-    matrix.data[0] = (float *) malloc(lines * sizeof(float));
+    matrix.data[0] = (float *) malloc(matrix.lines * sizeof(float));
 
-    for (int i = 0; i < matrix.columns; i++) {
-        printf("Defina um valor para (linha, coluna): (%d, %d)\n", 1, i + 1);
-        scanf("%f", &matrix.data[0][i]);
+    for (int i = 0; i < matrix.lines; i++) {
+        matrix.data[i] = matrix.data[0] + i;
+        printf("Defina um valor para (linha, coluna): (%d, %d)\n", i + 1, 1);
+        scanf("%f", &matrix.data[i][0]);
     }
 
     printMatrix(&matrix);
 
     return matrix;
 }
+
 
 void addOperation() {
     if (!(globalMatrixB.lines == globalMatrixA.lines && globalMatrixB.columns == globalMatrixA.columns)) {
@@ -131,12 +133,12 @@ int main() {
                 break;
             case 2:
                 if (matrixSelected == 0) {
-                    globalMatrixA = createColumMatrix();
+                    globalMatrixA = createColumnMatrix();
                     matrixSelected = 1;
                     break;
                 }
 
-                globalMatrixB = createColumMatrix();
+                globalMatrixB = createColumnMatrix();
                 matrixSelected = 2;
                 break;
         }
@@ -153,7 +155,6 @@ int main() {
         case 1:
             addOperation();
             break;
-
     }
 
     for (int i = 0; i < globalMatrixA.lines; i++) {
