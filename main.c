@@ -72,21 +72,29 @@ Matrix createColumnMatrix() {
     return matrix;
 }
 
-Matrix createNullMatrix(int rows, int columns) {
+Matrix createNullMatrix() {
     Matrix matrix;
+    int rows, columns;
+
+    printf("Digite a quantidade de linhas: ");
+    scanf("%d", &rows);
+
+    printf("Digite a quantidade de colunas: ");
+    scanf("%d", &columns);
 
     matrix.lines = rows;
     matrix.columns = columns;
 
     matrix.data = (float **) malloc(rows * sizeof(float *));
     for (int i = 0; i < rows; i++) {
-        matrix.data[i] = (float *) calloc(columns, sizeof(float));  // Use calloc para inicializar com zeros
+        matrix.data[i] = (float *) calloc(columns, sizeof(float));
     }
 
     printMatrix(&matrix);
 
     return matrix;
 }
+
 
 Matrix createSquareMatrix() {
     Matrix matrix;
@@ -100,7 +108,7 @@ Matrix createSquareMatrix() {
 
     matrix.data = (float **) malloc(size * sizeof(float *));
     for (int i = 0; i < size; i++) {
-        matrix.data[i] = (float *) calloc(size, sizeof(float));  // Inicializa com zeros
+        matrix.data[i] = (float *) calloc(size, sizeof(float));
     }
 
     for (int i = 0; i < size; i++) {
@@ -127,7 +135,7 @@ Matrix createDiagonalMatrix() {
 
     matrix.data = (float **) malloc(size * sizeof(float *));
     for (int i = 0; i < size; i++) {
-        matrix.data[i] = (float *) calloc(size, sizeof(float));  // Inicializa com zeros
+        matrix.data[i] = (float *) calloc(size, sizeof(float));
     }
 
     for (int i = 0; i < size; i++) {
@@ -152,7 +160,7 @@ Matrix createIdentityMatrix() {
 
     matrix.data = (float **) malloc(size * sizeof(float *));
     for (int i = 0; i < size; i++) {
-        matrix.data[i] = (float *) calloc(size, sizeof(float));  // Inicializa com zeros
+        matrix.data[i] = (float *) calloc(size, sizeof(float));
     }
 
     for (int i = 0; i < size; i++) {
@@ -212,15 +220,15 @@ Matrix createSymmetricMatrix() {
     Matrix matrix;
     int size;
 
-    printf("Digite a ordem da matriz simétrica: ");
-    scanf("%d", &size);
+    printf("Digite o tamanho da matriz simétrica: ");
+        scanf("%d", &size);
 
     matrix.lines = size;
     matrix.columns = size;
 
     matrix.data = (float **) malloc(size * sizeof(float *));
     for (int i = 0; i < size; i++) {
-        matrix.data[i] = (float *) malloc(size * sizeof(float));  // Sem inicialização, pois o usuário vai preencher
+        matrix.data[i] = (float *) malloc(size * sizeof(float));
     }
 
     for (int i = 0; i < size; i++) {
@@ -293,7 +301,7 @@ Matrix createAndPrintOppositeMatrix() {
 Matrix createUpperTriangularMatrix() {
     Matrix upperTriangularMatrix;
 
-    printf("Digite a ordem da matriz triangular superior: ");
+    printf("Digite o tamanho da matriz triangular superior: ");
     scanf("%d", &upperTriangularMatrix.lines);
 
     upperTriangularMatrix.columns = upperTriangularMatrix.lines;
@@ -319,7 +327,7 @@ Matrix createUpperTriangularMatrix() {
 Matrix createLowerTriangularMatrix() {
     Matrix lowerTriangularMatrix;
 
-    printf("Digite a ordem da matriz triangular inferior: ");
+    printf("Digite o tamanho da matriz triangular inferior: ");
     scanf("%d", &lowerTriangularMatrix.lines);
 
     lowerTriangularMatrix.columns = lowerTriangularMatrix.lines;
@@ -470,7 +478,6 @@ void subtractOperation() {
     free(result.data);
 }
 
-
 int main() {
     int matrixSelected = 0;
 
@@ -487,7 +494,7 @@ int main() {
         printf("[8] - Matriz Simétrica \n");
         printf("[9] - Matriz Oposta \n");
         printf("[10] - Matriz Triangular Superior \n");
-        printf("[11] - Matriz Triangular Inferior \n"); // Adicionei a opção que faltava
+        printf("[11] - Matriz Triangular Inferior \n");
 
         int choice = 0;
 
@@ -517,42 +524,42 @@ int main() {
                 break;
             case 3:
                 if (matrixSelected == 0) {
-                    globalMatrixA = createNullMatrix(1, 1); // Você pode ajustar os parâmetros conforme necessário
+                    globalMatrixA = createNullMatrix(1, 1);
                     matrixSelected = 1;
                     break;
                 }
 
-                globalMatrixB = createNullMatrix(1, 1); // Você pode ajustar os parâmetros conforme necessário
+                globalMatrixB = createNullMatrix(1, 1);
                 matrixSelected = 2;
                 break;
             case 4:
                 if (matrixSelected == 0) {
-                    globalMatrixA = createSquareMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                    globalMatrixA = createSquareMatrix();
                     matrixSelected = 1;
                     break;
                 }
 
-                globalMatrixB = createSquareMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                globalMatrixB = createSquareMatrix();
                 matrixSelected = 2;
                 break;
             case 5:
                 if (matrixSelected == 0) {
-                    globalMatrixA = createDiagonalMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                    globalMatrixA = createDiagonalMatrix();
                     matrixSelected = 1;
                     break;
                 }
 
-                globalMatrixB = createDiagonalMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                globalMatrixB = createDiagonalMatrix();
                 matrixSelected = 2;
                 break;
             case 6:
                 if (matrixSelected == 0) {
-                    globalMatrixA = createIdentityMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                    globalMatrixA = createIdentityMatrix();
                     matrixSelected = 1;
                     break;
                 }
 
-                globalMatrixB = createIdentityMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                globalMatrixB = createIdentityMatrix();
                 matrixSelected = 2;
                 break;
             case 7:
@@ -567,12 +574,12 @@ int main() {
                 break;
             case 8:
                 if (matrixSelected == 0) {
-                    globalMatrixA = createSymmetricMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                    globalMatrixA = createSymmetricMatrix();
                     matrixSelected = 1;
                     break;
                 }
 
-                globalMatrixB = createSymmetricMatrix(); // Você pode ajustar os parâmetros conforme necessário
+                globalMatrixB = createSymmetricMatrix();
                 matrixSelected = 2;
                 break;
             case 9:
