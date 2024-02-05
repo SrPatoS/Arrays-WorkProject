@@ -72,6 +72,250 @@ Matrix createColumnMatrix() {
     return matrix;
 }
 
+Matrix createNullMatrix(int rows, int columns) {
+    Matrix matrix;
+
+    matrix.lines = rows;
+    matrix.columns = columns;
+
+    matrix.data = (float **) malloc(rows * sizeof(float *));
+    for (int i = 0; i < rows; i++) {
+        matrix.data[i] = (float *) calloc(columns, sizeof(float));  // Use calloc para inicializar com zeros
+    }
+
+    printMatrix(&matrix);
+
+    return matrix;
+}
+
+Matrix createSquareMatrix() {
+    Matrix matrix;
+    int size;
+
+    printf("Digite o tamanho da matriz quadrada: ");
+    scanf("%d", &size);
+
+    matrix.lines = size;
+    matrix.columns = size;
+
+    matrix.data = (float **) malloc(size * sizeof(float *));
+    for (int i = 0; i < size; i++) {
+        matrix.data[i] = (float *) calloc(size, sizeof(float));  // Inicializa com zeros
+    }
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            printf("Defina um valor para (linha, coluna): (%d, %d)\n", i + 1, j + 1);
+            scanf("%f", &matrix.data[i][j]);
+        }
+    }
+
+    printMatrix(&matrix);
+
+    return matrix;
+}
+
+Matrix createDiagonalMatrix() {
+    Matrix matrix;
+    int size;
+
+    printf("Digite o tamanho da matriz diagonal: ");
+    scanf("%d", &size);
+
+    matrix.lines = size;
+    matrix.columns = size;
+
+    matrix.data = (float **) malloc(size * sizeof(float *));
+    for (int i = 0; i < size; i++) {
+        matrix.data[i] = (float *) calloc(size, sizeof(float));  // Inicializa com zeros
+    }
+
+    for (int i = 0; i < size; i++) {
+        printf("Defina um valor para a diagonal principal (linha, coluna): (%d, %d)\n", i + 1, i + 1);
+        scanf("%f", &matrix.data[i][i]);
+    }
+
+    printMatrix(&matrix);
+
+    return matrix;
+}
+
+Matrix createIdentityMatrix() {
+    Matrix matrix;
+    int size;
+
+    printf("Digite o tamanho da matriz identidade: ");
+    scanf("%d", &size);
+
+    matrix.lines = size;
+    matrix.columns = size;
+
+    matrix.data = (float **) malloc(size * sizeof(float *));
+    for (int i = 0; i < size; i++) {
+        matrix.data[i] = (float *) calloc(size, sizeof(float));  // Inicializa com zeros
+    }
+
+    for (int i = 0; i < size; i++) {
+        matrix.data[i][i] = 1.0;
+    }
+
+    printMatrix(&matrix);
+
+    return matrix;
+}
+
+Matrix createAndPrintTransposedMatrix() {
+    Matrix originalMatrix;
+    Matrix transposedMatrix;
+
+    printf("Digite o número de linhas da matriz: ");
+    scanf("%d", &originalMatrix.lines);
+
+    printf("Digite o número de colunas da matriz: ");
+    scanf("%d", &originalMatrix.columns);
+
+    originalMatrix.data = (float **) malloc(originalMatrix.lines * sizeof(float *));
+    for (int i = 0; i < originalMatrix.lines; i++) {
+        originalMatrix.data[i] = (float *) malloc(originalMatrix.columns * sizeof(float));
+        for (int j = 0; j < originalMatrix.columns; j++) {
+            printf("Digite o valor para (linha, coluna): (%d, %d)\n", i + 1, j + 1);
+            scanf("%f", &originalMatrix.data[i][j]);
+        }
+    }
+
+    printf("Matriz Original:\n");
+    printMatrix(&originalMatrix);
+
+    transposedMatrix.lines = originalMatrix.columns;
+    transposedMatrix.columns = originalMatrix.lines;
+
+    transposedMatrix.data = (float **) malloc(transposedMatrix.lines * sizeof(float *));
+    for (int i = 0; i < transposedMatrix.lines; i++) {
+        transposedMatrix.data[i] = (float *) malloc(transposedMatrix.columns * sizeof(float));
+        for (int j = 0; j < transposedMatrix.columns; j++) {
+            transposedMatrix.data[i][j] = originalMatrix.data[j][i];
+        }
+    }
+
+    printf("Matriz Transposta:\n");
+    printMatrix(&transposedMatrix);
+
+    for (int i = 0; i < originalMatrix.lines; i++) {
+        free(originalMatrix.data[i]);
+    }
+    free(originalMatrix.data);
+
+    return transposedMatrix;
+}
+
+Matrix createSymmetricMatrix() {
+    Matrix matrix;
+    int size;
+
+    printf("Digite a ordem da matriz simétrica: ");
+    scanf("%d", &size);
+
+    matrix.lines = size;
+    matrix.columns = size;
+
+    matrix.data = (float **) malloc(size * sizeof(float *));
+    for (int i = 0; i < size; i++) {
+        matrix.data[i] = (float *) malloc(size * sizeof(float));  // Sem inicialização, pois o usuário vai preencher
+    }
+
+    for (int i = 0; i < size; i++) {
+        for (int j = i; j < size; j++) {
+            if (i == j) {
+                printf("Digite o valor para a diagonal principal (linha, coluna): (%d, %d)\n", i + 1, j + 1);
+            } else {
+                printf("Digite o valor para (linha, coluna): (%d, %d) e (%d, %d)\n", i + 1, j + 1, j + 1, i + 1);
+            }
+            scanf("%f", &matrix.data[i][j]);
+            matrix.data[j][i] = matrix.data[i][j];
+        }
+    }
+
+    printMatrix(&matrix);
+
+    return matrix;
+}
+
+Matrix createAndPrintOppositeMatrix() {
+    Matrix originalMatrix;
+
+    printf("Digite o número de linhas da matriz: ");
+    scanf("%d", &originalMatrix.lines);
+
+    printf("Digite o número de colunas da matriz: ");
+    scanf("%d", &originalMatrix.columns);
+
+    originalMatrix.data = (float **) malloc(originalMatrix.lines * sizeof(float *));
+    for (int i = 0; i < originalMatrix.lines; i++) {
+        originalMatrix.data[i] = (float *) malloc(originalMatrix.columns * sizeof(float));
+        for (int j = 0; j < originalMatrix.columns; j++) {
+            printf("Digite o valor para (linha, coluna): (%d, %d)\n", i + 1, j + 1);
+            scanf("%f", &originalMatrix.data[i][j]);
+        }
+    }
+
+    printf("Matriz Original:\n");
+    printMatrix(&originalMatrix);
+
+    Matrix oppositeMatrix;
+
+    oppositeMatrix.lines = originalMatrix.lines;
+    oppositeMatrix.columns = originalMatrix.columns;
+
+    oppositeMatrix.data = (float **) malloc(oppositeMatrix.lines * sizeof(float *));
+    for (int i = 0; i < oppositeMatrix.lines; i++) {
+        oppositeMatrix.data[i] = (float *) malloc(oppositeMatrix.columns * sizeof(float));
+        for (int j = 0; j < oppositeMatrix.columns; j++) {
+            oppositeMatrix.data[i][j] = -originalMatrix.data[i][j];
+        }
+    }
+
+    printf("Matriz Oposta:\n");
+    printMatrix(&oppositeMatrix);
+
+    for (int i = 0; i < originalMatrix.lines; i++) {
+        free(originalMatrix.data[i]);
+    }
+    free(originalMatrix.data);
+
+    for (int i = 0; i < oppositeMatrix.lines; i++) {
+        free(oppositeMatrix.data[i]);
+    }
+    free(oppositeMatrix.data);
+
+    return originalMatrix;
+}
+
+Matrix createUpperTriangularMatrix() {
+    Matrix upperTriangularMatrix;
+
+    printf("Digite a ordem da matriz triangular superior: ");
+    scanf("%d", &upperTriangularMatrix.lines);
+
+    upperTriangularMatrix.columns = upperTriangularMatrix.lines;
+
+    upperTriangularMatrix.data = (float **) malloc(upperTriangularMatrix.lines * sizeof(float *));
+    for (int i = 0; i < upperTriangularMatrix.lines; i++) {
+        upperTriangularMatrix.data[i] = (float *) malloc(upperTriangularMatrix.columns * sizeof(float));
+        for (int j = 0; j < upperTriangularMatrix.columns; j++) {
+            if (i > j) {
+                upperTriangularMatrix.data[i][j] = 0.0;
+            } else {
+                printf("Digite o valor para (linha, coluna): (%d, %d)\n", i + 1, j + 1);
+                scanf("%f", &upperTriangularMatrix.data[i][j]);
+            }
+        }
+    }
+
+    printMatrix(&upperTriangularMatrix);
+
+    return upperTriangularMatrix;
+}
+
 void addOperation() {
     if (!(globalMatrixB.lines == globalMatrixA.lines && globalMatrixB.columns == globalMatrixA.columns)) {
         printf("As matrizes não têm o mesmo tamanho!");
@@ -198,6 +442,32 @@ void subtractOperation() {
     }
 
     free(result.data);
+}
+
+Matrix createLowerTriangularMatrix() {
+    Matrix lowerTriangularMatrix;
+
+    printf("Digite a ordem da matriz triangular inferior: ");
+    scanf("%d", &lowerTriangularMatrix.lines);
+
+    lowerTriangularMatrix.columns = lowerTriangularMatrix.lines;
+
+    lowerTriangularMatrix.data = (float **) malloc(lowerTriangularMatrix.lines * sizeof(float *));
+    for (int i = 0; i < lowerTriangularMatrix.lines; i++) {
+        lowerTriangularMatrix.data[i] = (float *) malloc(lowerTriangularMatrix.columns * sizeof(float));
+        for (int j = 0; j < lowerTriangularMatrix.columns; j++) {
+            if (i < j) {
+                lowerTriangularMatrix.data[i][j] = 0.0;
+            } else {
+                printf("Digite o valor para (linha, coluna): (%d, %d)\n", i + 1, j + 1);
+                scanf("%f", &lowerTriangularMatrix.data[i][j]);
+            }
+        }
+    }
+
+    printMatrix(&lowerTriangularMatrix);
+
+    return lowerTriangularMatrix;
 }
 
 int main() {
