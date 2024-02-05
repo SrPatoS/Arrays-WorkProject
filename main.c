@@ -72,7 +72,6 @@ Matrix createColumnMatrix() {
     return matrix;
 }
 
-
 void addOperation() {
     if (!(globalMatrixB.lines == globalMatrixA.lines && globalMatrixB.columns == globalMatrixA.columns)) {
         printf("As matrizes não têm o mesmo tamanho!");
@@ -106,6 +105,101 @@ void addOperation() {
     free(result.data);
 }
 
+void multiplyOperation() {
+    if (globalMatrixA.columns != globalMatrixB.lines) {
+        printf("As matrizes não são compatíveis para multiplicação!");
+        return;
+    }
+
+    Matrix result;
+
+    result.lines = globalMatrixA.lines;
+    result.columns = globalMatrixB.columns;
+
+    result.data = (float **) malloc(result.lines * sizeof(float *));
+    for (int i = 0; i < result.lines; i++) {
+        result.data[i] = (float *) malloc(result.columns * sizeof(float));
+    }
+
+    for (int i = 0; i < result.lines; i++) {
+        for (int j = 0; j < result.columns; j++) {
+            result.data[i][j] = 0;
+
+            for (int k = 0; k < globalMatrixA.columns; k++) {
+                result.data[i][j] += globalMatrixA.data[i][k] * globalMatrixB.data[k][j];
+            }
+        }
+    }
+
+    printf("Resultado: \n");
+    printMatrix(&result);
+
+    for (int i = 0; i < result.lines; i++) {
+        free(result.data[i]);
+    }
+
+    free(result.data);
+}
+
+void scalarMultiplyOperation(float scalar) {
+    Matrix result;
+
+    result.lines = globalMatrixA.lines;
+    result.columns = globalMatrixA.columns;
+
+    result.data = (float **) malloc(result.lines * sizeof(float *));
+    for (int i = 0; i < result.lines; i++) {
+        result.data[i] = (float *) malloc(result.columns * sizeof(float));
+    }
+
+    for (int i = 0; i < result.lines; i++) {
+        for (int j = 0; j < result.columns; j++) {
+            result.data[i][j] = globalMatrixA.data[i][j] * scalar;
+        }
+    }
+
+    printf("Resultado: \n");
+    printMatrix(&result);
+
+    for (int i = 0; i < result.lines; i++) {
+        free(result.data[i]);
+    }
+
+    free(result.data);
+}
+
+void subtractOperation() {
+    if (!(globalMatrixB.lines == globalMatrixA.lines && globalMatrixB.columns == globalMatrixA.columns)) {
+        printf("As matrizes não têm o mesmo tamanho!");
+        return;
+    }
+
+    Matrix result;
+
+    result.lines = globalMatrixA.lines;
+    result.columns = globalMatrixA.columns;
+
+    result.data = (float **) malloc(result.lines * sizeof(float *));
+    for (int i = 0; i < result.lines; i++) {
+        result.data[i] = (float *) malloc(result.columns * sizeof(float));
+    }
+
+    for (int i = 0; i < result.lines; i++) {
+        for (int j = 0; j < result.columns; j++) {
+            result.data[i][j] = globalMatrixA.data[i][j] - globalMatrixB.data[i][j];
+        }
+    }
+
+    printf("Resultado: \n");
+    printMatrix(&result);
+
+    for (int i = 0; i < result.lines; i++) {
+        free(result.data[i]);
+    }
+
+    free(result.data);
+}
+
 int main() {
     int matrixSelected = 0;
 
@@ -126,6 +220,7 @@ int main() {
                     globalMatrixA = createLineMatrix();
                     matrixSelected = 1;
                     break;
+
                 }
 
                 globalMatrixB = createLineMatrix();
@@ -147,6 +242,9 @@ int main() {
     int operationChoice = 0;
 
     printf("[1] - Adição\n");
+    printf("[2] - Multiplicação entre matrizes\n");
+    printf("[3] - Multiplicação por escalar\n");
+    printf("[4] - Subtração\n");
 
     printf("Selecione o tipo de operação: \n");
     scanf("%d", &operationChoice);
@@ -155,6 +253,13 @@ int main() {
         case 1:
             addOperation();
             break;
+        case 2:
+            multiplyOperation();
+            break;
+        case 3:
+            scalarMultiplyOperation(2);
+        case 4:
+            subtractOperation();
     }
 
     for (int i = 0; i < globalMatrixA.lines; i++) {
